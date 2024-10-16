@@ -9,21 +9,22 @@ interface FoodCardProps {
     seals: Warnings[];
 }
 
+
+
 export default function FoodCard({ imageSrc, altText, title, seals }: FoodCardProps) {
   return (
-    <Card className="flex flex-col items-center text-center w-60 h-[400px] mt-10 hover:scale-105 transform z-50">
-      <CardHeader className="p-0">
+    <Card className="h-full">
+      <CardHeader >
         <img
           src={imageSrc}
           alt={altText}
           width={400}
           height={200}
-          className="object-cover w-full h-48 pt-4"
         />
       </CardHeader>
-      <CardContent className="p-6">
+      <CardContent >
         <CardTitle >{title}</CardTitle>
-        <div className="text-center">
+        <div >
           {seals.map((seal:Warnings, index:number) => (
             <Badge
               key={index}

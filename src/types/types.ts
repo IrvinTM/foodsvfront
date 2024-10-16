@@ -1,30 +1,31 @@
 
 export enum Category {
-	fruits = "FRUITS",
-	vegetables = "VEGETABLES",
-	grains = "GRAINS",
-	proteins = "PROTEINS",
-	dairy = "DAIRY",
-	fats = "FATS",
-	sweets = "SWEETS",
-	beverages = "BEVERAGES",
-	processed_condiments = "PROCESSED_CONDIMENTS",
-	snacks = "SNACKS",
+	 "FRUITS",
+	 "VEGETABLES",
+	 "GRAINS",
+	 "PROTEINS",
+	 "DAIRY",
+	 "FATS",
+	 "SWEETS",
+	 "BEVERAGES",
+	 "PROCESSED_CONDIMENTS",
+	 "SNACKS",
 }
 
 export enum NovaClasification {
-	ultra_processed = "ULTRA_PROCESSED",
-	processed = "PROCESSED",
-	minimally_processed = "MINIMALLY_PROCESSED",
-	unprocessed = "UNPROCESSED",
+	 "ULTRA_PROCESSED",
+	 "PROCESSED",
+	 "MINIMALLY_PROCESSED",
+	 "UNPROCESSED",
 }
 
 export enum Warnings {
-	none = "NONE",
-	high_sugar = "HIGH_SUGAR",
-	high_sodium = "HIGH_SODIUM",
-	high_fat = "HIGH_FAT",
-	high_cholesterol = "HIGH_CHOLESTEROL",
+	 "HIGH_SUGAR",
+	 "HIGH_SODIUM",
+	 "HIGH_CHOLESTEROL",
+	 "HIGH_TRANS_FATS",
+	 "HIGH_SATURATED_FATS",
+	 "HIGH_CARBS"
 }
 
 export type Food = {

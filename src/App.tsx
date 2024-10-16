@@ -1,8 +1,8 @@
-import FoodCard from "@/components/FoodCard.tsx";
-import { FoodItem,PaginatedFoodResponse } from "./types/types";
+import { PaginatedFoodResponse } from "./types/types";
 import { useEffect, useState } from "react";
 import { Pagination,PaginationNext ,PaginationEllipsis , PaginationContent, PaginationItem,PaginationPrevious, PaginationLink } from "./components/ui/pagination";
 import Bar from "./components/Bar";
+import Cards from "./components/Cards";
 
 
 
@@ -29,23 +29,8 @@ function App() {
   useEffect(() => {fetchData(1, 5)}, []);
   return (
     <div>
-      <Bar></Bar>
-      <div>
-        <div>
-          <div className="items-center flex flex-col pb-2">
-            {page?.content.map((food: FoodItem, index) => (
-              <FoodCard
-                key={index}
-                imageSrc={food.image}
-                altText={food.name}
-                title={food.name}
-                seals={food.warnings}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
+      <Bar />
+      <Cards foods={page ? page.content : []} />
       <Pagination className="pt-4 pb-4">
 
         <PaginationContent>
