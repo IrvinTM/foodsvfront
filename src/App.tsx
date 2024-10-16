@@ -30,9 +30,9 @@ function App() {
   return (
     <div>
       <Bar></Bar>
-      <div className="flex justify-center content-center flex-col gap-4">
-        <div className="flex justify-center content-center items-center">
-          <div>
+      <div>
+        <div>
+          <div className="items-center flex flex-col pb-2">
             {page?.content.map((food: FoodItem, index) => (
               <FoodCard
                 key={index}
