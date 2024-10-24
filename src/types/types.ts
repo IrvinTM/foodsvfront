@@ -19,13 +19,13 @@ export enum NovaClasification {
 	 "UNPROCESSED",
 }
 
-export enum Warnings {
-	 "HIGH_SUGAR",
-	 "HIGH_SODIUM",
-	 "HIGH_CHOLESTEROL",
-	 "HIGH_TRANS_FATS",
-	 "HIGH_SATURATED_FATS",
-	 "HIGH_CARBS"
+export type Warnings = {
+	 HIGH_SUGAR : string;
+	 HIGH_SODIUM: string;
+	 HIGH_CHOLESTEROL : string;
+	 HIGH_TRANS_FATS : string;
+	 HIGH_SATURATED_FATS : string;
+	 HIGH_CARBS : string;
 }
 
 export type Food = {
@@ -43,7 +43,7 @@ export type Food = {
   sugar: number;
   sodium: number;
   serving_size: number;
-  warnings: Warnings[];
+  warnings: string[];
 };
 
 
@@ -57,7 +57,7 @@ export type FoodItem = {
   carbs: number;
   sugar: number;
   sodium: number;
-  warnings: Warnings[];
+  warnings: string[];
   totalFats: number;
   nova_group: string;
   total_fats: number;
@@ -94,3 +94,5 @@ export type PaginatedFoodResponse = {
   numberOfElements: number;
   empty: boolean;
 };
+
+

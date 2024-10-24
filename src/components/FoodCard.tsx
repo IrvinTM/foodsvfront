@@ -2,14 +2,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Warnings } from "@/types/types";
 import { Badge } from "@/components/ui/badge"
+
 interface FoodCardProps {
     imageSrc: string;
     altText: string;
     title: string;
     seals: Warnings[];
 }
-
-
 
 export default function FoodCard({ imageSrc, altText, title, seals }: FoodCardProps) {
   return (

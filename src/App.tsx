@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Pagination,PaginationNext ,PaginationEllipsis , PaginationContent, PaginationItem,PaginationPrevious, PaginationLink } from "./components/ui/pagination";
 import Bar from "./components/Bar";
 import Cards from "./components/Cards";
+import SearchWithFilter from "./components/SearchWithFilter";
+import Footer from "./components/Footer";
 
 
 
@@ -26,10 +28,12 @@ function App() {
     return false;
   }
 
+
   useEffect(() => {fetchData(1, 5)}, []);
   return (
     <div>
       <Bar />
+      <SearchWithFilter />
       <Cards foods={page ? page.content : []} />
       <Pagination className="pt-4 pb-4">
 
@@ -59,6 +63,7 @@ function App() {
 
         </PaginationContent>
       </Pagination>
+      <Footer />
     </div>
   );
 }
