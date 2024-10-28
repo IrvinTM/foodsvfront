@@ -11,23 +11,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+interface searchWithFilterProps {
+  handleSearch: (searchTerm: string, searchCategories: string[]) => void;
+}
+
+
 const categories = [
   { id: "Snaks", name: "Snaks" },
-  { id: "clothing", name: "Clothing" },
-  { id: "books", name: "Books" },
-  { id: "home", name: "Home & Garden" },
-  { id: "toys", name: "Toys & Games" },
+  { id: "Vegetables", name: "Vegetales" },
+  { id: "Grains", name: "Granos" },
+  { id: "Sweets", name: "Dulces" },
+  { id: "Beverages", name: "Bevidas" },
+  { id: "Condiments", name: "Condimentos" },
 ]
 
-export default function SearchWithFilter() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+export default function SearchWithFilter({  handleSearch } : searchWithFilterProps) {
 
-  const handleSearch = (event: React.FormEvent) => {
-    event.preventDefault()
-    console.log("Searching for:", searchTerm, "in categories:", selectedCategories)
-    // Here you would typically trigger your search function
-  }
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
 
   const toggleCategory = (categoryId: string) => {
     setSelectedCategories((prev) =>
@@ -37,13 +38,18 @@ export default function SearchWithFilter() {
     )
   }
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    handleSearch(searchTerm, selectedCategories)
+  }
+
   return (
     <div className="w-full max-w-2xl mx-auto p-4">
-      <form onSubmit={handleSearch} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <div className="relative flex-grow">
           <Input
             type="search"
-            placeholder="Search..."
+            placeholder="Buscar..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 pr-4 py-2 w-full"
@@ -52,10 +58,10 @@ export default function SearchWithFilter() {
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">Categories</Button>
+            <Button variant="outline">Categorias</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Filter by Category</DropdownMenuLabel>
+            <DropdownMenuLabel>Filtrar por Categoria</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {categories.map((category) => (
               <DropdownMenuCheckboxItem
@@ -68,15 +74,15 @@ export default function SearchWithFilter() {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button type="submit">Search</Button>
+        <Button type="submit">Buscar</Button>
       </form>
       <div className="mt-4">
         <p className="text-sm text-gray-600">
-          Selected categories:{" "}
+          Categorias Seleccionadas:{" "}
           <span className="font-semibold">
             {selectedCategories.length > 0
               ? selectedCategories.map((id) => categories.find(c => c.id === id)?.name).join(", ")
-              : "All"}
+              : "Todas"}
           </span>
         </p>
       </div>

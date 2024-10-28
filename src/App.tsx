@@ -12,6 +12,10 @@ import Footer from "./components/Footer";
 function App() {
 
   const [page, setPage] = useState<PaginatedFoodResponse>();
+  const handleSearch = (searchTerm:string, searchCategories:string[]) => {
+    console.log(searchTerm, searchCategories);
+  }
+
   async function fetchData(pageNumber:number = 1, pageSize:number = 5) {
 
     const response = await fetch(`http://localhost:8080/api/foods?page=${pageNumber}&size=${pageSize}`);
@@ -33,7 +37,7 @@ function App() {
   return (
     <div>
       <Bar />
-      <SearchWithFilter />
+      <SearchWithFilter handleSearch={handleSearch}  />
       <Cards foods={page ? page.content : []} />
       <Pagination className="pt-4 pb-4">
 
