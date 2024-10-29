@@ -12,8 +12,13 @@ import Footer from "./components/Footer";
 function App() {
 
   const [page, setPage] = useState<PaginatedFoodResponse>();
-  const handleSearch = (searchTerm:string, searchCategories:string[]) => {
+  const handleSearch = async (searchTerm:string, searchCategories:string) => {
     console.log(searchTerm, searchCategories);
+    const response = await fetch(`http://localhost:8080/api/foods/search?name=${searchTerm}&categories=${searchCategories}`);
+    const jsonData = await response.json();
+    console.log(jsonData);
+    const foodResponse:PaginatedFoodResponse = jsonData;
+    setPage(foodResponse);
   }
 
   async function fetchData(pageNumber:number = 1, pageSize:number = 5) {
