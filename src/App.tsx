@@ -33,7 +33,7 @@ function App() {
 
   console.log("buscandoo", isSearching);
 
-  async function fetchData(pageNumber:number = 0, pageSize:number = 5) {
+  async function fetchData(pageNumber:number = 0, pageSize:number = 6) {
     const response = await fetch(`http://localhost:8080/api/foods?page=${pageNumber}&size=${pageSize}`);
     const jsonData = await response.json();
     console.log(jsonData);
@@ -47,7 +47,7 @@ function App() {
     }
     return false;
   }
-  function handlePageChange(pageNumber:number=0, pageSize:number=5){
+  function handlePageChange(pageNumber:number=0, pageSize:number=6){
     if(isSearching){
       handleSearch(pageNumber, pageSize);
     }else{
@@ -56,7 +56,7 @@ function App() {
   }
 
 
-  useEffect(() => {fetchData(0, 5)}, []);
+  useEffect(() => {fetchData(0, 6)}, []);
   return (
     <AppContext.Provider value={{searchTerm: searchTerm, setSearchTerm:setSearchTerm, categories:searchCategories, setCategories: setSearchCategories, handleSearch:handleSearch}}>
       <div>
@@ -68,16 +68,16 @@ function App() {
           <PaginationContent>
           
             <PaginationItem>
-              <PaginationPrevious  onClick={() => {if(page?.first){return}else{ console.log(page?.number); handlePageChange((page?.number ?? 0)-1, 5)}}} />
+              <PaginationPrevious  onClick={() => {if(page?.first){return}else{ console.log(page?.number); handlePageChange((page?.number ?? 0)-1, 6)}}} />
             </PaginationItem>
 
             <PaginationItem>
               <PaginationLink isActive >{(page?.number ?? 1) + 1}</PaginationLink>
             </PaginationItem>
 
-            <PaginationLink onClick={() => {if(noMorePages(1)){return} handlePageChange((page?.number ?? 0) + 1, 5)}}>{(page?.number ?? 1) + 2}</PaginationLink>
+            <PaginationLink onClick={() => {if(noMorePages(1)){return} handlePageChange((page?.number ?? 0) + 1, 6)}}>{(page?.number ?? 1) + 2}</PaginationLink>
 
-            <PaginationLink  onClick={() => {if(noMorePages(2)){return} handlePageChange((page?.number ?? 0) + 2, 5)}}>
+            <PaginationLink  onClick={() => {if(noMorePages(2)){return} handlePageChange((page?.number ?? 0) + 2, 6)}}>
               {(page?.number ?? 1)+3}
             </PaginationLink>
           

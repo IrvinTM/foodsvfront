@@ -22,8 +22,7 @@ const categories = [
   { id: "GRAINS", name: "Granos" },
   { id: "SWEETS", name: "Dulces" },
   { id: "BEVERAGES", name: "Bevidas" },
-  //todo condiments: fix according to the backend
-  { id: "CONDIMENTS", name: "Condimentos" },
+  { id: "PROCESSED_CONDIMENTS", name: "Condimentos" },
 ]
 
 export default function SearchWithFilter() {

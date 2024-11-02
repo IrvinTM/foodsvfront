@@ -7,11 +7,33 @@ export default function Bar() {
   return (
     <div>
       <header className="sticky top-0 z-50 w-full border-b bg-background shadow-sm transition-shadow duration-300 data-[scrolled=true]:shadow-md">
-        <div className="flex h-16 items-center px-4 md:px-6 justify-between">
+        <div className="flex flex-row h-16 items-center justify-between px-4 md:px-6">
           <a href="#" onClick={()=>{ window.location.reload()  }} className="flex items-center gap-2">
             <MountainIcon className="h-6 w-6" />
           </a>
-          <nav className="hidden lg:flex lg:gap-6">
+          
+          <nav className="hidden lg:flex lg:gap-12 lg:justify-between pl-24">
+            <a
+              target="_blank"
+              href="https://github.com/IrvinTM"
+              className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
+            >
+              Inicio
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/IrvinTM"
+              className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
+            >
+              Solicitar Alimento
+            </a>
+            <a
+              target="_blank"
+              href="https://github.com/IrvinTM"
+              className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
+            >
+              Registrar Alimento
+            </a>
             <a
               target="_blank"
               href="https://github.com/IrvinTM"
@@ -19,6 +41,8 @@ export default function Bar() {
             >
               Github
             </a>
+            
+ 
           </nav>
           <Sheet>
             <SheetTrigger asChild>
