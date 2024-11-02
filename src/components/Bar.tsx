@@ -55,14 +55,36 @@ export default function Bar() {
               side="right"
               className="w-full max-w-xs bg-background p-6"
             >
-              <div className="grid gap-4">
+              <div className="grid gap-4 mt-6">
+                <a
+                  target="_blank"
+                  onClick={()=>{ window.location.reload()  }}
+                  className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
+                >
+                  Inicio
+                </a>
                 <a
                   target="_blank"
                   href="https://github.com/IrvinTM"
-                  className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
+                >
+                  Solicitar Alimento
+                </a>
+                <a
+                  target="_blank"
+                  href="https://github.com/IrvinTM"
+                  className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
+                >
+                  Registrar Alimento
+                </a>
+                <a
+                  target="_blank"
+                  href="https://github.com/IrvinTM"
+                  className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
                 >
                   Github
                 </a>
+                
               </div>
             </SheetContent>
           </Sheet>
