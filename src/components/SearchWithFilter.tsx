@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -17,12 +17,13 @@ import { myContext } from "@/types/types"
 
 
 const categories = [
-  { id: "Snaks", name: "Snaks" },
-  { id: "Vegetables", name: "Vegetales" },
-  { id: "Grains", name: "Granos" },
-  { id: "Sweets", name: "Dulces" },
-  { id: "Beverages", name: "Bevidas" },
-  { id: "Condiments", name: "Condimentos" },
+  { id: "SNACKS", name: "Snaks" },
+  { id: "VEGETABLES", name: "Vegetales" },
+  { id: "GRAINS", name: "Granos" },
+  { id: "SWEETS", name: "Dulces" },
+  { id: "BEVERAGES", name: "Bevidas" },
+  //todo condiments: fix according to the backend
+  { id: "CONDIMENTS", name: "Condimentos" },
 ]
 
 export default function SearchWithFilter() {
@@ -35,18 +36,18 @@ export default function SearchWithFilter() {
       prev.includes(categoryId)
         ? prev.filter((id) => id !== categoryId)
         : [...prev, categoryId]
-    )
-    data.setCategories(selectedCategories.map((id) => categories.find(c => c.id === id)?.name).join(","))
+    );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    data.handleSearch(0,5)
-  }
+
+  useEffect(() => {
+const categoriesString = selectedCategories.map((id) => categories.find(c => c.id === id)?.id).join(",")
+    data.setCategories(categoriesString)
+  }, [selectedCategories, data.setCategories, data])
 
   return (
     <div className="w-full max-w-2xl mx-auto p-4">
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <div className="flex gap-2">
         <div className="relative flex-grow">
           <Input
             type="search"
@@ -68,15 +69,15 @@ export default function SearchWithFilter() {
               <DropdownMenuCheckboxItem
                 key={category.id}
                 checked={selectedCategories.includes(category.id)}
-                onCheckedChange={() => toggleCategory(category.id)}
+                onCheckedChange={() => {toggleCategory(category.id) }}
               >
                 {category.name}
               </DropdownMenuCheckboxItem>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button type="submit">Buscar</Button>
-      </form>
+        <Button onClick={() => {data.handleSearch(0,5)}}>Buscar</Button>
+      </div>
       <div className="mt-4">
         <p className="text-sm text-gray-600">
           Categorias Seleccionadas:{" "}

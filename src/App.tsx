@@ -19,8 +19,10 @@ function App() {
 
 
   const handleSearch = async (pageNumber:number, pageSize:number) => {
+    if(searchTerm === "" && searchCategories === ""){
+      return;
+    }
     setIsSearching(true);
-    console.log("estamos buscando"+ isSearching);
     console.log(searchTerm, searchCategories);
     const response = await fetch(`http://localhost:8080/api/foods/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
     const jsonData = await response.json();
@@ -28,6 +30,8 @@ function App() {
     const foodResponse:PaginatedFoodResponse = jsonData;
     setPage(foodResponse);
   }
+
+  console.log("buscandoo", isSearching);
 
   async function fetchData(pageNumber:number = 0, pageSize:number = 5) {
     const response = await fetch(`http://localhost:8080/api/foods?page=${pageNumber}&size=${pageSize}`);

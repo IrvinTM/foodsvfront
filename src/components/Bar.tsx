@@ -8,7 +8,7 @@ export default function Bar() {
     <div>
       <header className="sticky top-0 z-50 w-full border-b bg-background shadow-sm transition-shadow duration-300 data-[scrolled=true]:shadow-md">
         <div className="flex h-16 items-center px-4 md:px-6 justify-between">
-          <a href="#" className="flex items-center gap-2">
+          <a href="#" onClick={()=>{ window.location.reload()  }} className="flex items-center gap-2">
             <MountainIcon className="h-6 w-6" />
           </a>
           <nav className="hidden lg:flex lg:gap-6">
