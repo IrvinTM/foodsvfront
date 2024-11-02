@@ -95,4 +95,10 @@ export type PaginatedFoodResponse = {
   empty: boolean;
 };
 
-
+export type myContext = {
+searchTerm: string;
+setSearchTerm: (value: string) => void;
+  categories: string;
+  setCategories: (value: string) => void;
+  handleSearch: (pageNumber:number, pageSize:number) => void;
+}

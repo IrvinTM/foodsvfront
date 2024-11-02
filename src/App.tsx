@@ -5,6 +5,7 @@ import Bar from "./components/Bar";
 import Cards from "./components/Cards";
 import SearchWithFilter from "./components/SearchWithFilter";
 import Footer from "./components/Footer";
+import { AppContext } from "./AppContext";
 
 
 
@@ -16,12 +17,11 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchCategories, setSearchCategories] = useState<string>("")
 
-  const handleSearch = async (searchTerm:string, searchCategories:string, pageNumber:number, pageSize:number ) => {
+
+  const handleSearch = async (pageNumber:number, pageSize:number) => {
     setIsSearching(true);
     console.log("estamos buscando"+ isSearching);
     console.log(searchTerm, searchCategories);
-    setSearchCategories(searchCategories);
-    setSearchTerm(searchTerm);
     const response = await fetch(`http://localhost:8080/api/foods/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
     const jsonData = await response.json();
     console.log(jsonData);
@@ -29,8 +29,7 @@ function App() {
     setPage(foodResponse);
   }
 
-  async function fetchData(pageNumber:number = 1, pageSize:number = 5) {
-    setIsSearching(false);
+  async function fetchData(pageNumber:number = 0, pageSize:number = 5) {
     const response = await fetch(`http://localhost:8080/api/foods?page=${pageNumber}&size=${pageSize}`);
     const jsonData = await response.json();
     console.log(jsonData);
@@ -46,49 +45,49 @@ function App() {
   }
   function handlePageChange(pageNumber:number=0, pageSize:number=5){
     if(isSearching){
-      handleSearch(searchTerm, searchCategories, pageNumber, pageSize);
+      handleSearch(pageNumber, pageSize);
     }else{
       fetchData(pageNumber, pageSize);
     }
   }
 
 
-  useEffect(() => {fetchData(1, 5)}, []);
+  useEffect(() => {fetchData(0, 5)}, []);
   return (
-    <div>
-      <Bar />
-      <SearchWithFilter handleSearch={handleSearch}  />
-      <Cards foods={page ? page.content : []} />
-      <Pagination className="pt-4 pb-4">
+    <AppContext.Provider value={{searchTerm: searchTerm, setSearchTerm:setSearchTerm, categories:searchCategories, setCategories: setSearchCategories, handleSearch:handleSearch}}>
+      <div>
+        <Bar />
+        <SearchWithFilter  />
+        <Cards foods={page ? page.content : []} />
+        <Pagination className="pt-4 pb-4">
 
-        <PaginationContent>
+          <PaginationContent>
           
-          <PaginationItem>
-            <PaginationPrevious  onClick={() => {if(page?.first){return}else{ console.log(page?.number); handlePageChange((page?.number ?? 0)-1, 5)}}} />
-          </PaginationItem>
+            <PaginationItem>
+              <PaginationPrevious  onClick={() => {if(page?.first){return}else{ console.log(page?.number); handlePageChange((page?.number ?? 0)-1, 5)}}} />
+            </PaginationItem>
 
-          <PaginationItem>
-            <PaginationLink isActive >{(page?.number ?? 1) + 1}</PaginationLink>
-          </PaginationItem>
+            <PaginationItem>
+              <PaginationLink isActive >{(page?.number ?? 1) + 1}</PaginationLink>
+            </PaginationItem>
 
-          <PaginationLink onClick={() => {if(noMorePages(1)){return} handlePageChange((page?.number ?? 0) + 1, 5)}}>{(page?.number ?? 1) + 2}</PaginationLink>
+            <PaginationLink onClick={() => {if(noMorePages(1)){return} handlePageChange((page?.number ?? 0) + 1, 5)}}>{(page?.number ?? 1) + 2}</PaginationLink>
 
-          <PaginationLink  onClick={() => {if(noMorePages(2)){return} handlePageChange((page?.number ?? 0) + 2, 5)}}>
-            {(page?.number ?? 1)+3}
-          </PaginationLink>
+            <PaginationLink  onClick={() => {if(noMorePages(2)){return} handlePageChange((page?.number ?? 0) + 2, 5)}}>
+              {(page?.number ?? 1)+3}
+            </PaginationLink>
           
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
 
-          <PaginationLink>
             <PaginationNext onClick={() =>{ if(page?.last){return}else{handlePageChange((page?.number ?? 1) + 1)}}} />
-          </PaginationLink>
 
-        </PaginationContent>
-      </Pagination>
-      <Footer />
-    </div>
+          </PaginationContent>
+        </Pagination>
+        <Footer />
+      </div>
+    </AppContext.Provider>
   );
 }
 

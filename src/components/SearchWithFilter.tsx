@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -10,10 +10,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { AppContext } from "@/AppContext"
+import { myContext } from "@/types/types"
 
-interface searchWithFilterProps {
-  handleSearch: (searchTerm: string, searchCategories: string, pageNumber:number, pageSize:number) => void;
-}
+
 
 
 const categories = [
@@ -25,25 +25,23 @@ const categories = [
   { id: "Condiments", name: "Condimentos" },
 ]
 
-export default function SearchWithFilter({  handleSearch } : searchWithFilterProps) {
+export default function SearchWithFilter() {
+
+  const data = useContext<myContext>(AppContext)
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  const [searchTerm, setSearchTerm] = useState("")
-  const [searchCategories, setSearchCategories] = useState<string>("")
-  const [isSearching, setIsSearching] = useState<boolean>(false);
-
   const toggleCategory = (categoryId: string) => {
     setSelectedCategories((prev) =>
       prev.includes(categoryId)
         ? prev.filter((id) => id !== categoryId)
         : [...prev, categoryId]
     )
-    setSearchCategories(selectedCategories.map((id) => categories.find(c => c.id === id)?.name).join(","))
+    data.setCategories(selectedCategories.map((id) => categories.find(c => c.id === id)?.name).join(","))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    handleSearch(searchTerm, searchCategories, 0, 5)
+    data.handleSearch(0,5)
   }
 
   return (
@@ -53,8 +51,8 @@ export default function SearchWithFilter({  handleSearch } : searchWithFilterPro
           <Input
             type="search"
             placeholder="Buscar..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={data.searchTerm}
+            onChange={(e) => data.setSearchTerm(e.target.value)}
             className="pl-10 pr-4 py-2 w-full"
           />
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
