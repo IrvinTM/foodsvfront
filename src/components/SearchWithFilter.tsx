@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 interface searchWithFilterProps {
-  handleSearch: (searchTerm: string, searchCategories: string) => void;
+  handleSearch: (searchTerm: string, searchCategories: string, pageNumber:number, pageSize:number) => void;
 }
 
 
@@ -30,6 +30,7 @@ export default function SearchWithFilter({  handleSearch } : searchWithFilterPro
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [searchCategories, setSearchCategories] = useState<string>("")
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
   const toggleCategory = (categoryId: string) => {
     setSelectedCategories((prev) =>
@@ -42,7 +43,7 @@ export default function SearchWithFilter({  handleSearch } : searchWithFilterPro
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    handleSearch(searchTerm, searchCategories)
+    handleSearch(searchTerm, searchCategories, 0, 5)
   }
 
   return (

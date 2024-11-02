@@ -12,9 +12,17 @@ import Footer from "./components/Footer";
 function App() {
 
   const [page, setPage] = useState<PaginatedFoodResponse>();
-  const handleSearch = async (searchTerm:string, searchCategories:string) => {
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState("")
+  const [searchCategories, setSearchCategories] = useState<string>("")
+
+  const handleSearch = async (searchTerm:string, searchCategories:string, pageNumber:number, pageSize:number ) => {
+    setIsSearching(true);
+    console.log("estamos buscando"+ isSearching);
     console.log(searchTerm, searchCategories);
-    const response = await fetch(`http://localhost:8080/api/foods/search?name=${searchTerm}&categories=${searchCategories}`);
+    setSearchCategories(searchCategories);
+    setSearchTerm(searchTerm);
+    const response = await fetch(`http://localhost:8080/api/foods/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
     const jsonData = await response.json();
     console.log(jsonData);
     const foodResponse:PaginatedFoodResponse = jsonData;
@@ -22,7 +30,7 @@ function App() {
   }
 
   async function fetchData(pageNumber:number = 1, pageSize:number = 5) {
-
+    setIsSearching(false);
     const response = await fetch(`http://localhost:8080/api/foods?page=${pageNumber}&size=${pageSize}`);
     const jsonData = await response.json();
     console.log(jsonData);
@@ -31,10 +39,17 @@ function App() {
   }
 
   function noMorePages(step:number):boolean{
-    if(page?.last || (page?.pageable.pageNumber ?? 1)+ step > (page?.totalPages ?? 1)-1){
+    if(page?.last || (page?.number ?? 1)+ step > (page?.totalPages ?? 1)-1){
       return true;
     }
     return false;
+  }
+  function handlePageChange(pageNumber:number=0, pageSize:number=5){
+    if(isSearching){
+      handleSearch(searchTerm, searchCategories, pageNumber, pageSize);
+    }else{
+      fetchData(pageNumber, pageSize);
+    }
   }
 
 
@@ -49,17 +64,17 @@ function App() {
         <PaginationContent>
           
           <PaginationItem>
-            <PaginationPrevious  onClick={() => {if(page?.first){return}else{ console.log(page?.pageable.pageNumber); fetchData((page?.pageable?.pageNumber ?? 1)-1, 5)}}} />
+            <PaginationPrevious  onClick={() => {if(page?.first){return}else{ console.log(page?.number); handlePageChange((page?.number ?? 0)-1, 5)}}} />
           </PaginationItem>
 
           <PaginationItem>
-            <PaginationLink isActive >{(page?.pageable.pageNumber ?? 1) + 1}</PaginationLink>
+            <PaginationLink isActive >{(page?.number ?? 1) + 1}</PaginationLink>
           </PaginationItem>
 
-          <PaginationLink onClick={() => {if(noMorePages(1)){return} fetchData((page?.pageable.pageNumber ?? 1) + 1, 5)}}>{(page?.pageable.pageNumber ?? 1) + 2}</PaginationLink>
+          <PaginationLink onClick={() => {if(noMorePages(1)){return} handlePageChange((page?.number ?? 0) + 1, 5)}}>{(page?.number ?? 1) + 2}</PaginationLink>
 
-          <PaginationLink  onClick={() => {if(noMorePages(2)){return} fetchData((page?.pageable.pageNumber ?? 1) + 2, 5)}}>
-            {(page?.pageable.pageNumber ?? 1)+3}
+          <PaginationLink  onClick={() => {if(noMorePages(2)){return} handlePageChange((page?.number ?? 0) + 2, 5)}}>
+            {(page?.number ?? 1)+3}
           </PaginationLink>
           
           <PaginationItem>
@@ -67,7 +82,7 @@ function App() {
           </PaginationItem>
 
           <PaginationLink>
-            <PaginationNext onClick={() =>{ if(page?.last){return}else{fetchData((page?.pageable.pageNumber ?? 1) + 1)}}} />
+            <PaginationNext onClick={() =>{ if(page?.last){return}else{handlePageChange((page?.number ?? 1) + 1)}}} />
           </PaginationLink>
 
         </PaginationContent>
