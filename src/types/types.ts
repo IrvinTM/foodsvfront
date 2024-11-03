@@ -1,23 +1,20 @@
 
-export enum Category {
-	 "FRUITS",
-	 "VEGETABLES",
-	 "GRAINS",
-	 "PROTEINS",
-	 "DAIRY",
-	 "FATS",
-	 "SWEETS",
-	 "BEVERAGES",
-	 "PROCESSED_CONDIMENTS",
-	 "SNACKS",
+export enum Category  {
+	 FRUITS =  "Frutas",
+  VEGETABLES =  "Vegetales",
+  GRAINS =  "Granos",
+  PROTEINS = "Proteins",
+  DAIRY = "Lacteos",
+  FATS = "Grasas",
+  SWEETS = "Dulces",
+  BEVERAGES = "Bebidas",
+  PROCESSED_CONDIMENTS =  "Condimentos",
+  SNACKS = "Snacks",
 }
 
 export enum NovaClasification {
-	 "ULTRA_PROCESSED",
-	 "PROCESSED",
-	 "MINIMALLY_PROCESSED",
-	 "UNPROCESSED",
-}
+	 "UNPROCESSED_OR_MINIMALLY_PROCESSED_FOODS", "PROCESSED_CULINARY_INGREDIENTS", "PROCESSED_FOODS", "ULTRA_PROCESSED_FOODS"
+	 }
 
 export type Warnings = {
 	 HIGH_SUGAR : string;
@@ -49,6 +46,7 @@ export type Food = {
 
 export type FoodItem = {
   name: string;
+  description: string;
   image: string;
   category: string;
   calories: number;
@@ -59,11 +57,10 @@ export type FoodItem = {
   sodium: number;
   warnings: string[];
   totalFats: number;
-  nova_group: string;
-  total_fats: number;
-  saturated_fats: number;
-  trans_fats: number;
-  serving_size: number;
+  novaGroup: string;
+  saturatedFats: number;
+  transFats: number;
+  servingSize: number;
 };
 
 type Sort = {

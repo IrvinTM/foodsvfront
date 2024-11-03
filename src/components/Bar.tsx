@@ -8,21 +8,19 @@ export default function Bar() {
     <div>
       <header className="sticky top-0 z-50 w-full border-b bg-background shadow-sm transition-shadow duration-300 data-[scrolled=true]:shadow-md">
         <div className="flex flex-row h-16 items-center justify-between px-4 md:px-6">
-          <a href="#" onClick={()=>{ window.location.reload()  }} className="flex items-center gap-2">
+          <a href="/"  className="flex items-center gap-2">
             <MountainIcon className="h-6 w-6" />
           </a>
           
           <nav className="hidden lg:flex lg:gap-12 lg:justify-between pl-24">
             <a
-              target="_blank"
-              href="https://github.com/IrvinTM"
+              href="/"
               className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
             >
               Inicio
             </a>
             <a
-              target="_blank"
-              href="https://github.com/IrvinTM"
+              href="/submit"
               className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
             >
               Agregar Alimento
@@ -51,15 +49,13 @@ export default function Bar() {
             >
               <div className="grid gap-4 mt-6">
                 <a
-                  target="_blank"
-                  onClick={()=>{ window.location.reload()  }}
+                  href="/"
                   className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
                 >
                   Inicio
                 </a>
                 <a
-                  target="_blank"
-                  href="https://github.com/IrvinTM"
+                  href="/submit"
                   className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
                 >
                   Agregar Alimento
