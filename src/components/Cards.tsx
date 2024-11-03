@@ -25,6 +25,7 @@ export default function Cards( {foods}: CardProps ) {
   
   return (
     <div className="container mx-auto px-2 py-8">
+      <p className="pb-2 font-sans text-slate-700 text-center">Agregados Recientemente</p>
       <div className="flex flex-wrap -mx-2">
         {foods.map((food:FoodItem, index:number) => (
           <div key={index} className="w-full sm:w-1/2 px-2 mb-4">
@@ -34,6 +35,7 @@ export default function Cards( {foods}: CardProps ) {
               </CardHeader>
               <CardContent className="flex justify-center content-center items-center flex-col">
                 <img className="w-96 h-80 object-contain" src={food.image} alt={food.name} />
+                <p className="text-center text-slate-700">lorem ipsum lorem sl ipsum lorem loren ip lorem ipsum ip lorem </p>
                 <CardFooter>
                 </CardFooter>
                 <div className="flex flex-row gap-2 justify-center content-center py-4 border rounded-xl container px-2">

@@ -25,15 +25,9 @@ export default function Bar() {
               href="https://github.com/IrvinTM"
               className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
             >
-              Solicitar Alimento
+              Agregar Alimento
             </a>
-            <a
-              target="_blank"
-              href="https://github.com/IrvinTM"
-              className="text-sm font-extrabold text-muted-foreground transition-colors hover:text-foreground" 
-            >
-              Registrar Alimento
-            </a>
+            
             <a
               target="_blank"
               href="https://github.com/IrvinTM"
@@ -68,15 +62,9 @@ export default function Bar() {
                   href="https://github.com/IrvinTM"
                   className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
                 >
-                  Solicitar Alimento
+                  Agregar Alimento
                 </a>
-                <a
-                  target="_blank"
-                  href="https://github.com/IrvinTM"
-                  className="text-sm text-center font-extrabold text-muted-foreground transition-colors hover:text-foreground border rounded-2xl border-slate-300 p-2"
-                >
-                  Registrar Alimento
-                </a>
+                
                 <a
                   target="_blank"
                   href="https://github.com/IrvinTM"
