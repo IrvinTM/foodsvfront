@@ -9,7 +9,6 @@ import { AppContext } from "./AppContext";
 
 
 
-
 function App() {
 
   const [page, setPage] = useState<PaginatedFoodResponse>();

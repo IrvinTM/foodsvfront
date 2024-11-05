@@ -1,20 +1,23 @@
 
-export enum Category  {
-	 FRUITS =  "Frutas",
-  VEGETABLES =  "Vegetales",
-  GRAINS =  "Granos",
-  PROTEINS = "Proteins",
-  DAIRY = "Lacteos",
-  FATS = "Grasas",
-  SWEETS = "Dulces",
-  BEVERAGES = "Bebidas",
-  PROCESSED_CONDIMENTS =  "Condimentos",
-  SNACKS = "Snacks",
-}
+export const Category: Map<string, string> = new Map([
+  ["Snacks", "SNACKS"],
+  ["Grasas", "FATS"],
+  ["Lácteos", "DAIRY"],
+  ["Frutas", "FRUITS"],
+  ["Granos", "GRAINS"],
+  ["Dulces", "SWEETS"],
+  ["Proteínas", "PROTEINS"],
+  ["Bebidas", "BEVERAGES"],
+  ["Vegetales", "VEGETABLES"],
+  ["Condimentos", "PROCESSED_CONDIMENTS"],
+]);
 
-export enum NovaClasification {
-	 "UNPROCESSED_OR_MINIMALLY_PROCESSED_FOODS", "PROCESSED_CULINARY_INGREDIENTS", "PROCESSED_FOODS", "ULTRA_PROCESSED_FOODS"
-	 }
+export const NovaClasification: Map<string, string> = new Map([
+  ["Alimentos Procesados", "PROCESSED_FOODS"],
+  ["Alimentos Ultra Procesados", "ULTRA_PROCESSED_FOODS"],
+  ["Ingredientes Culinarios Procesados", "PROCESSED_CULINARY_INGREDIENTS"],
+  ["Alimentos no Procesados o Mínimamente Procesados", "UNPROCESSED_OR_MINIMALLY_PROCESSED_FOODS"],
+]);
 
 export type Warnings = {
 	 HIGH_SUGAR : string;
@@ -24,25 +27,6 @@ export type Warnings = {
 	 HIGH_SATURATED_FATS : string;
 	 HIGH_CARBS : string;
 }
-
-export type Food = {
-  name: string;
-  image: string;
-  category: Category;
-  nova_group: NovaClasification;
-  calories: number;
-  protein: number;
-  total_fats: number;
-  saturated_fats: number;
-  trans_fats: number;
-  cholesterol: number;
-  carbs: number;
-  sugar: number;
-  sodium: number;
-  serving_size: number;
-  warnings: string[];
-};
-
 
 export type FoodItem = {
   name: string;

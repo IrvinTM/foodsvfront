@@ -35,7 +35,7 @@ export default function Cards( {foods}: CardProps ) {
               </CardHeader>
               <CardContent className="flex justify-center content-center items-center flex-col">
                 <img className="w-96 h-80 object-contain" src={food.image} alt={food.name} />
-                <p className="text-center text-slate-700">lorem ipsum lorem sl ipsum lorem loren ip lorem ipsum ip lorem </p>
+                <p className="text-center text-slate-700">{food.description}</p>
                 <CardFooter>
                 </CardFooter>
                 <div className="flex flex-row gap-2 justify-center content-center py-4 border rounded-xl container px-2">
