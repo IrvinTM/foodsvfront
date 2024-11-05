@@ -47,6 +47,24 @@ export type FoodItem = {
   servingSize: number;
 };
 
+export type FoodItemAdd = {
+  name: string;
+  description: string;
+  image: string;
+  category: string;
+  calories: number;
+  protein: number;
+  cholesterol: number;
+  carbs: number;
+  sugar: number;
+  sodium: number;
+  total_fats: number;
+  nova_group: string;
+  saturated_fats: number;
+  trans_fats: number;
+  serving_size: number;
+};
+
 type Sort = {
   sorted: boolean;
   unsorted: boolean;
