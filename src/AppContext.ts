@@ -6,6 +6,7 @@ const initialState: myContext = {
   setSearchTerm: () => {},
   categories: "",
   setCategories: () => {},
+  handleSearch: ()=> {},
 };
 
 export const AppContext = createContext<myContext>(initialState);
