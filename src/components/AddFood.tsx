@@ -77,7 +77,6 @@ export default function AddFood() {
 
   const handleSubmit = async () => {
     const cookie = getCookie("g_t")
-    console.log("this is the cookie wer sending"+ cookie)
     const response = await fetch(`${apiUrl}/api/foods/add`,{
       method: "POST",
       headers: {
@@ -120,7 +119,6 @@ export default function AddFood() {
           <GoogleLogin onSuccess={(credentialResponse: CredentialResponse)=>{ if(credentialResponse.credential === undefined){
             toast({title:"error"});
           }else{
-            console.log("full credential is "+credentialResponse.clientId)
             handleAuth(credentialResponse.credential)
 
           }}} onError={()=>{toast({title: "There was an error logging in"})}} />

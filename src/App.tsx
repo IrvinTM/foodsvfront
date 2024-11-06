@@ -21,20 +21,16 @@ function App() {
       return;
     }
     setIsSearching(true);
-    console.log(searchTerm, searchCategories);
     const response = await fetch(`${apiUrl}/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
     const jsonData = await response.json();
-    console.log(jsonData);
     const foodResponse:PaginatedFoodResponse = jsonData;
     setPage(foodResponse);
   }
 
-  console.log("buscandoo", isSearching);
 
   async function fetchData(pageNumber:number = 0, pageSize:number = 6) {
     const response = await fetch(`${apiUrl}/api/foods?page=${pageNumber}&size=${pageSize}`);
     const jsonData = await response.json();
-    console.log(jsonData);
     const foodResponse:PaginatedFoodResponse = jsonData;
     setPage(foodResponse);
   }
