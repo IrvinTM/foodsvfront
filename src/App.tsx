@@ -5,8 +5,7 @@ import Bar from "./components/Bar";
 import Cards from "./components/Cards";
 import SearchWithFilter from "./components/SearchWithFilter";
 import Footer from "./components/Footer";
-import { AppContext } from "./AppContext";
-
+import { AppContext, apiUrl } from "./AppContext";
 
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
     }
     setIsSearching(true);
     console.log(searchTerm, searchCategories);
-    const response = await fetch(`http://localhost:8080/api/foods/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
+    const response = await fetch(`${apiUrl}/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
     const jsonData = await response.json();
     console.log(jsonData);
     const foodResponse:PaginatedFoodResponse = jsonData;
@@ -33,7 +32,7 @@ function App() {
   console.log("buscandoo", isSearching);
 
   async function fetchData(pageNumber:number = 0, pageSize:number = 6) {
-    const response = await fetch(`http://localhost:8080/api/foods?page=${pageNumber}&size=${pageSize}`);
+    const response = await fetch(`${apiUrl}/api/foods?page=${pageNumber}&size=${pageSize}`);
     const jsonData = await response.json();
     console.log(jsonData);
     const foodResponse:PaginatedFoodResponse = jsonData;

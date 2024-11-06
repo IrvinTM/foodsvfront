@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast"
 import { Category, NovaClasification, FoodItemAdd, } from '@/types/types'
 import Bar from '../components/Bar.tsx'
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
+import { apiUrl } from '@/AppContext.ts'
 
 export default function AddFood() {
   const [foodItem, setFoodItem] = useState<FoodItemAdd>({
@@ -77,7 +78,7 @@ export default function AddFood() {
   const handleSubmit = async () => {
     const cookie = getCookie("g_t")
     console.log("this is the cookie wer sending"+ cookie)
-    const response = await fetch("http://localhost:8080/api/foods/add",{
+    const response = await fetch(`${apiUrl}/api/foods/add`,{
       method: "POST",
       headers: {
         "content-Type": "application/json",

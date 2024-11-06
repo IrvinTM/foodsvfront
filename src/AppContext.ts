@@ -10,3 +10,5 @@ const initialState: myContext = {
 };
 
 export const AppContext = createContext<myContext>(initialState);
+
+export const apiUrl = import.meta.env.VITE_API_URL
