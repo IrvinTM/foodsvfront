@@ -21,7 +21,7 @@ function App() {
       return;
     }
     setIsSearching(true);
-    const response = await fetch(`${apiUrl}/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
+    const response = await fetch(`${apiUrl}/api/foods/search?name=${searchTerm}&categories=${searchCategories}&page=${pageNumber}&size=${pageSize}`)
     const jsonData = await response.json();
     const foodResponse:PaginatedFoodResponse = jsonData;
     setPage(foodResponse);
