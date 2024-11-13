@@ -50,7 +50,7 @@ export default function Cards({ foods }: CardProps) {
       const card = document.getElementById(index.toString()) 
       if(card){
 
-        card.style.aspectRatio="20 / 16"
+        card.style.aspectRatio="10 / 12"
         card.style.objectFit="contain"
       }
     },}).then(canvas =>{
@@ -120,9 +120,9 @@ export default function Cards({ foods }: CardProps) {
         Agregados Recientemente
       </p>
 
-      <div className="flex flex-wrap -mx-2">
+      <div className="flex flex-wrap -mx-2 xl:px-80">
         {foods.map((food: FoodItem, index: number) => (
-          <div key={index} className="w-full sm:w-1/2 px-2 mb-4">
+          <div key={index} className="w-full sm:w-1/2 px-2 mb-4 ">
             <Card id={index.toString()} className="h-full text-center relative">
               <CardHeader>
                 <CardTitle>{food.name}</CardTitle>
@@ -157,7 +157,7 @@ export default function Cards({ foods }: CardProps) {
                     </TooltipProvider>
 
                   </DialogTrigger>
-                  <DialogContent className="w-80% h-80% object-contain mr-4 flex flex-col justify-center items-center">
+                  <DialogContent className="w-80% h-80% object-contain mr-4 flex flex-col justify-center items-center pb-4">
                     <DialogHeader>
                       <DialogTitle>Compartir información del alimento</DialogTitle>
                     </DialogHeader>
@@ -198,7 +198,7 @@ export default function Cards({ foods }: CardProps) {
                 <CardFooter></CardFooter>
                 <div className="flex flex-row gap-2 justify-center content-center py-4 border rounded-xl container px-2">
                   {food.warnings.map((warning: string, index: number) => (
-                    <div key={index} className="aspect-square">
+                    <div key={index}>
                       <img
                         className="rounded-2xl w-20 h-16 object-contain aspect-[20 / 16]"
                         src={images.get(warning)}
