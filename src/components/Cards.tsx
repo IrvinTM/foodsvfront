@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas";
+import html2canvas from "html2canvas-pro";
 import { useState } from "react";
 import {
   Card,
@@ -46,12 +46,42 @@ export default function Cards({ foods }: CardProps) {
 
   async function getImage(index:number) {
     setImageLoading(true)
-    html2canvas(document.getElementById(index.toString())!, {useCORS:true, backgroundColor:"#ffffff", scale: 3, onclone(document ) {
+    html2canvas(document.getElementById(index.toString())!, {useCORS:true, backgroundColor:"#ffffff", scale: 3, async onclone(document ) {
       const card = document.getElementById(index.toString()) 
       if(card){
 
-        card.style.aspectRatio="10 / 12"
-        card.style.objectFit="contain"
+        card.style.border="none"
+      }
+
+     
+
+      const imageElement = document.getElementById("image"+index.toString()) as HTMLImageElement
+      if(imageElement){
+        console.log("el url de la imagen es"+imageElement.src)
+        try {
+          // Fetch the image blob from the src URL
+          const response = await fetch(imageElement.src);
+          const blob = await response.blob();
+
+          // Convert the image blob to a base64 string
+          const base64String = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string); // Convert to base64 string
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+
+          // Assign the base64 string back to the image element
+          imageElement.src = base64String;
+
+          console.log("Image source converted to base64 and assigned back");
+          console.log(imageElement.src)
+        } catch (error) {
+          console.error("Failed to convert image to base64", error);
+        }
+
+      }      else{
+        console.log("image error not able to get element")
       }
     },}).then(canvas =>{
       setImage(canvas)
@@ -123,7 +153,7 @@ export default function Cards({ foods }: CardProps) {
       <div className="flex flex-wrap -mx-2 xl:px-80">
         {foods.map((food: FoodItem, index: number) => (
           <div key={index} className="w-full sm:w-1/2 px-2 mb-4 ">
-            <Card id={index.toString()} className="h-full text-center relative">
+            <Card id={index.toString()} className="h-full text-center relative object-contain">
               <CardHeader>
                 <CardTitle>{food.name}</CardTitle>
               </CardHeader>
@@ -186,8 +216,9 @@ export default function Cards({ foods }: CardProps) {
                   </DialogContent>
                 </Dialog>
               </div>
-              <CardContent className="flex justify-center content-center items-center flex-col">
+              <CardContent id={"imageContainer"+index.toString()} className="flex justify-center content-center items-center flex-col object-contain">
                 <img
+                  id={"image"+index.toString()}
                   className="w-96 h-80 object-contain"
                   src={food.image}
                   alt={food.name}
@@ -200,7 +231,7 @@ export default function Cards({ foods }: CardProps) {
                   {food.warnings.map((warning: string, index: number) => (
                     <div key={index}>
                       <img
-                        className="rounded-2xl w-20 h-16 object-contain aspect-[20 / 16]"
+                        className="rounded-2xl w-20 h-16 object-contain "
                         src={images.get(warning)}
                         alt={warning}
                       />
