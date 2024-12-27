@@ -1,5 +1,5 @@
-import { Github, FileCode2, Home, Info, BookOpen, Users } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
+import { Github, FileCode2, Home, Info, BookOpen, Users } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
   return (
@@ -9,33 +9,48 @@ export default function Footer() {
           <div>
             <h2 className="mb-4 text-lg font-semibold text-primary">FoodSV</h2>
             <p className="text-sm text-muted-foreground">
-              Proyecto de codigo abierto para tener mas informacion sobre los alimentos que consumimos.
+              Proyecto de codigo abierto para tener mas informacion sobre los
+              alimentos que consumimos.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 lg:col-span-2">
             <div>
-              <h3 className="mb-4 text-sm font-semibold text-primary">Links útiles</h3>
+              <h3 className="mb-4 text-sm font-semibold text-primary">
+                Links útiles
+              </h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/" className="text-sm text-muted-foreground hover:text-primary">
+                  <a
+                    href="/"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
                     <Home className="inline-block w-4 h-4 mr-2" />
                     Inicio
                   </a>
                 </li>
                 <li>
-                  <a href="/about" className="text-sm text-muted-foreground hover:text-primary">
+                  <a
+                    href="/about"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
                     <Info className="inline-block w-4 h-4 mr-2" />
                     Información
                   </a>
                 </li>
                 <li>
-                  <a href="/contribute" className="text-sm text-muted-foreground hover:text-primary">
+                  <a
+                    href="https://github.com/IrvinTM/foodsv"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
                     <Users className="inline-block w-4 h-4 mr-2" />
                     Contribuir
                   </a>
                 </li>
                 <li>
-                  <a href="/docs" className="text-sm text-muted-foreground hover:text-primary">
+                  <a
+                    href="https://github.com/IrvinTM/foodsv"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
                     <BookOpen className="inline-block w-4 h-4 mr-2" />
                     Documentación
                   </a>
@@ -43,11 +58,13 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-4 text-sm font-semibold text-primary">Recursos</h3>
+              <h3 className="mb-4 text-sm font-semibold text-primary">
+                Recursos
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="https://github.com/your-repo"
+                    href="https://github.com/IrvinTM/foodsv"
                     className="text-sm text-muted-foreground hover:text-primary"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -57,7 +74,10 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="/api" className="text-sm text-muted-foreground hover:text-primary">
+                  <a
+                    href="https://apialimentos.archbtw.site/api/foods"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
                     <FileCode2 className="inline-block w-4 h-4 mr-2" />
                     API
                   </a>
@@ -74,5 +94,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
